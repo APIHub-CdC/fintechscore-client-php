@@ -1,6 +1,6 @@
 {
-    "name": "apihub-cdc/fintechscore-client-php",
-    "description": "Esta API evaluac el riesgo crediticio de una persona, cubriendo las necesidades de las FinTechs.",
+    "name": "apihub-cdc/fintech-score-client-php",
+    "description": "",
     "keywords": [
         "apihub",
         "php",
@@ -8,13 +8,6 @@
         "api"
     ],
     "homepage": "http://developer.circulodecredito.com.mx",
-    "license": "proprietary",
-    "authors": [
-        {
-            "name": "APIHub and contributors",
-            "homepage": "https://github.com/APIHub-CdC"
-        }
-    ],
     "require": {
         "php": ">=5.5",
         "ext-curl": "*",
@@ -23,6 +16,7 @@
         "guzzlehttp/guzzle": "^6.2",
         "monolog/monolog": "^1.24",
         "apihub-cdc/signature-manager": "^1.0.0"
+
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8",
@@ -30,9 +24,9 @@
         "friendsofphp/php-cs-fixer": "~2.12"
     },
     "autoload": {
-        "psr-4": { "FintechScore\\MX\\Client\\" : "lib/" }
+        "psr-4": { "FintechScore\\Client\\" : "lib/" }
     },
     "autoload-dev": {
-        "psr-4": { "FintechScore\\MX\\Client\\" : "test/" }
+        "psr-4": { "FintechScore\\Client\\" : "test/" }
     }
 }

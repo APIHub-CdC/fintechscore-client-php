@@ -104,26 +104,31 @@ $this->signer = new KeyHandler(
  
 ### Paso 4. Modificar URL y credenciales
 
- Modificar la URL y las credenciales de acceso a la petición en ***test/Api/ApiTest.php***, como se muestra en el siguiente fragmento de código:
+ Modificar la URL y las credenciales de acceso a la petición en ***test/Api/FintechScoreApiTest.php***, como se muestra en el siguiente fragmento de código:
 
 ```php
 public function setUp()
 {
-    $password = getenv('KEY_PASSWORD');
-    $this->signer = new KeyHandler(null, null, $password);
+    $password = 'KEY_PASSWORD';
 
-    $events = new MiddlewareEvents($this->signer);
-    $handler = handlerStack::create();
-    $handler->push($events->add_signature_header('x-signature'));   
-    $handler->push($events->verify_signature_header('x-signature'));
-    $client = new Client(['handler' => $handler]);
+        $this->keypair = 'path/keypair.p12';
+        $this->cert = 'path/cdc_cert.pem';
+        $this->signer = new KeyHandler($this->keypair, $this->cert, $password);
 
-    $config = new Configuration();
-    $config->setHost('the_url');
-    $this->apiInstance = new Instance($client, $config);
-    $this->x_api_key = "your_api_key";
-    $this->usernameCDC = "your_username";
-    $this->passwordCDC = "your_password";  
+        $events = new MiddlewareEvents($this->signer);
+        $handler = handlerStack::create();
+        $handler->push($events->add_signature_header('x-signature'));   
+        $handler->push($events->verify_signature_header('x-signature'));
+        $client = new Client(['handler' => $handler]);
+
+        $config = new Configuration();
+        $config->setHost('your-url');
+        
+        $this->apiInstance = new Instance($client, $config);
+        $this->x_api_key = "your-apikey";
+        $this->username = "your-username";
+        $this->password = "your-password";
+
 
 } 
  ```
@@ -135,41 +140,52 @@ Es importante contar con el setUp() que se encargará de firmar y verificar la p
 > **NOTA:** Los datos de la siguiente petición son solo representativos.
 
 ```php
-public function testGetReporte()
-{
-    try {
+    public function testGetReporte()
+    {
 
-        $body = new Peticion();
-        $persona = new Persona();
-        $domicilio = new Domicilio(); 
-        $catalogoEstados = new CatalogoEstados(); 
-        $catalogoPais = new CatalogoPais();
-
-        $domicilio->setDireccion("AV 535 84");
-        $domicilio->setCiudad( "CIUDAD DE MEXICO");
-        $domicilio->setColoniaPoblacion("SAN JUAN DE ARAGON 1RA SECC");
-        $domicilio->setDelegacionMunicipio("GUSTAVO A MADERO");
-        $domicilio->setCP("07969");
-        $domicilio->setEstado($catalogoEstados::CDMX);
-        $domicilio->setPais($catalogoPais::MX);
-        
-        $persona->setPrimerNombre("PABLO");
-        $persona->setSegundoNombre("ANTONIO");
-        $persona->setApellidoPaterno("PRUEBA");
-        $persona->setApellidoMaterno("ALVAREZ");
-        $persona->setFechaNacimiento("1985-03-16");
-        $persona->setRFC("PUAP850316MI1");
-        $persona->setDomicilio($domicilio);
-
-        $body->setFolioOtorgante("20210307");
-        $body->setPersona($persona);
-
-        $result = $this->apiInstance->getReporte($this->x_api_key, $this->usernameCDC, $this->passwordCDC, $body);
-        print_r($result);
-    } catch (ApiException | Exception $e) {
-        echo 'Exception when calling ApiTest->testGetReporte: ', $e->getMessage(), PHP_EOL;
-    }        
-}
+     try{
+                $request = new Peticion();
+                $persona = new Persona();
+                $domicilio = new Domicilio();
+                $request->setFolioOtorgante("");
+                $persona->setPrimerNombre("");
+                $persona->setSegundoNombre("");
+                $persona->setApellidoPaterno("");
+                $persona->setApellidoMaterno("");
+                $persona->setFechaNacimiento("");                
+                $domicilio->setDireccion("");
+                $domicilio->setColoniaPoblacion("");
+                $domicilio->setDelegacionMunicipio("");
+                $domicilio->setCiudad("");
+                $domicilio->setEstado("");
+                $domicilio->setCP("");
+                $domicilio->setPais("");
+            
+                $persona->setDomicilio($domicilio);
+                $request->setPersona($persona);
+                $response = $this->apiInstance->getReporte($this->x_api_key,$this->username,$this->password, $request);
+                $this->assertNotNull($response );
+                print_r($response);
+        }
+        catch(Exception $e){
+            echo 'Exception when calling ApiTest->testGetReporte: ', $e->getMessage(), PHP_EOL;
+        }
+    }
+    
+ public function testGetReporteFolio()
+    {
+     try{
+                $request = new PeticionFolio();
+                $request->setFolioOtorgante("");
+                $request->setFolioConsulta("");
+                $response = $this->apiInstance->getReporteFolio($this->x_api_key,$this->username,$this->password, $request);
+                $this->assertNotNull($response );
+                print_r($response);
+        }
+            catch(Exception $e){
+                echo 'Exception when calling ApiTest->testGetReporteFolio: ', $e->getMessage(), PHP_EOL;
+            }
+    }
 ```
 
 ## Pruebas unitarias

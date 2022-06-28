@@ -1,9 +1,9 @@
 <?php
 
-namespace FintechScore\MX\Client\Model;
+namespace FintechScore\Client\Model;
 
 use \ArrayAccess;
-use \FintechScore\MX\Client\ObjectSerializer;
+use \FintechScore\Client\ObjectSerializer;
 
 class Domicilio implements ModelInterface, ArrayAccess
 {
@@ -16,9 +16,9 @@ class Domicilio implements ModelInterface, ArrayAccess
         'colonia_poblacion' => 'string',
         'delegacion_municipio' => 'string',
         'ciudad' => 'string',
-        'estado' => '\FintechScore\MX\Client\Model\CatalogoEstados',
+        'estado' => '\FintechScore\Client\Model\CatalogoEstados',
         'cp' => 'string',
-        'pais' => '\FintechScore\MX\Client\Model\CatalogoPais'
+        'pais' => '\FintechScore\Client\Model\CatalogoPais'
     ];
     
     protected static $FintechScoreFormats = [

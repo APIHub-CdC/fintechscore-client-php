@@ -5,22 +5,20 @@ namespace FintechScore\Client\Model;
 use \ArrayAccess;
 use \FintechScore\Client\ObjectSerializer;
 
-class Respuesta implements ModelInterface, ArrayAccess
+class PeticionFolio implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
     
-    protected static $FintechScoreModelName = 'Respuesta';
+    protected static $FintechScoreModelName = 'PeticionFolio';
     
     protected static $FintechScoreTypes = [
-        'folio_consulta' => 'string',
         'folio_otorgante' => 'string',
-        'score' => '\FintechScore\Client\Model\Score'
+        'folio_consulta' => 'string'
     ];
     
     protected static $FintechScoreFormats = [
-        'folio_consulta' => null,
         'folio_otorgante' => null,
-        'score' => null
+        'folio_consulta' => null
     ];
     
     public static function FintechScoreTypes()
@@ -34,21 +32,18 @@ class Respuesta implements ModelInterface, ArrayAccess
     }
     
     protected static $attributeMap = [
-        'folio_consulta' => 'folioConsulta',
         'folio_otorgante' => 'folioOtorgante',
-        'score' => 'score'
+        'folio_consulta' => 'folioConsulta'
     ];
     
     protected static $setters = [
-        'folio_consulta' => 'setFolioConsulta',
         'folio_otorgante' => 'setFolioOtorgante',
-        'score' => 'setScore'
+        'folio_consulta' => 'setFolioConsulta'
     ];
     
     protected static $getters = [
-        'folio_consulta' => 'getFolioConsulta',
         'folio_otorgante' => 'getFolioOtorgante',
-        'score' => 'getScore'
+        'folio_consulta' => 'getFolioConsulta'
     ];
     
     public static function attributeMap()
@@ -77,31 +72,25 @@ class Respuesta implements ModelInterface, ArrayAccess
     
     public function __construct(array $data = null)
     {
-        $this->container['folio_consulta'] = isset($data['folio_consulta']) ? $data['folio_consulta'] : null;
         $this->container['folio_otorgante'] = isset($data['folio_otorgante']) ? $data['folio_otorgante'] : null;
-        $this->container['score'] = isset($data['score']) ? $data['score'] : null;
+        $this->container['folio_consulta'] = isset($data['folio_consulta']) ? $data['folio_consulta'] : null;
     }
     
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+        if ($this->container['folio_otorgante'] === null) {
+            $invalidProperties[] = "'folio_otorgante' can't be null";
+        }
+        if ($this->container['folio_consulta'] === null) {
+            $invalidProperties[] = "'folio_consulta' can't be null";
+        }
         return $invalidProperties;
     }
     
     public function valid()
     {
         return count($this->listInvalidProperties()) === 0;
-    }
-    
-    public function getFolioConsulta()
-    {
-        return $this->container['folio_consulta'];
-    }
-    
-    public function setFolioConsulta($folio_consulta)
-    {
-        $this->container['folio_consulta'] = $folio_consulta;
-        return $this;
     }
     
     public function getFolioOtorgante()
@@ -115,14 +104,14 @@ class Respuesta implements ModelInterface, ArrayAccess
         return $this;
     }
     
-    public function getScore()
+    public function getFolioConsulta()
     {
-        return $this->container['score'];
+        return $this->container['folio_consulta'];
     }
     
-    public function setScore($score)
+    public function setFolioConsulta($folio_consulta)
     {
-        $this->container['score'] = $score;
+        $this->container['folio_consulta'] = $folio_consulta;
         return $this;
     }
     

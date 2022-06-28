@@ -1,9 +1,9 @@
 <?php
 
-namespace FintechScore\MX\Client\Model;
+namespace FintechScore\Client\Model;
 
 use \ArrayAccess;
-use \FintechScore\MX\Client\ObjectSerializer;
+use \FintechScore\Client\ObjectSerializer;
 
 class Persona implements ModelInterface, ArrayAccess
 {
@@ -18,7 +18,7 @@ class Persona implements ModelInterface, ArrayAccess
         'segundo_nombre' => 'string',
         'fecha_nacimiento' => 'string',
         'rfc' => 'string',
-        'domicilio' => '\FintechScore\MX\Client\Model\Domicilio'
+        'domicilio' => '\FintechScore\Client\Model\Domicilio'
     ];
     
     protected static $FintechScoreFormats = [

@@ -1,9 +1,9 @@
 <?php
 
-namespace FintechScore\MX\Client\Model;
+namespace FintechScore\Client\Model;
 
 use \ArrayAccess;
-use \FintechScore\MX\Client\ObjectSerializer;
+use \FintechScore\Client\ObjectSerializer;
 
 class Error implements ModelInterface, ArrayAccess
 {

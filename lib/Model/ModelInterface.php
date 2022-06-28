@@ -1,6 +1,6 @@
 <?php
 
-namespace FintechScore\MX\Client\Model;
+namespace FintechScore\Client\Model;
 
 interface ModelInterface
 {
@@ -10,7 +10,7 @@ interface ModelInterface
     public static function FintechScoreTypes();
     
     public static function FintechScoreFormats();
-    
+
     public static function attributeMap();
     
     public static function setters();
@@ -20,4 +20,5 @@ interface ModelInterface
     public function listInvalidProperties();
     
     public function valid();
+
 }

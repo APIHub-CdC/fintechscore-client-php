@@ -1,9 +1,9 @@
 <?php
 
-namespace FintechScore\MX\Client\Model;
+namespace FintechScore\Client\Model;
 
 use \ArrayAccess;
-use \FintechScore\MX\Client\ObjectSerializer;
+use \FintechScore\Client\ObjectSerializer;
 
 class Peticion implements ModelInterface, ArrayAccess
 {
@@ -13,7 +13,7 @@ class Peticion implements ModelInterface, ArrayAccess
     
     protected static $FintechScoreTypes = [
         'folio_otorgante' => 'string',
-        'persona' => '\FintechScore\MX\Client\Model\Persona'
+        'persona' => '\FintechScore\Client\Model\Persona'
     ];
     
     protected static $FintechScoreFormats = [

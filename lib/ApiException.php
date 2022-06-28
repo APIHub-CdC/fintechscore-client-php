@@ -1,6 +1,6 @@
 <?php
 
-namespace FintechScore\MX\Client;
+namespace FintechScore\Client;
 
 use \Exception;
 

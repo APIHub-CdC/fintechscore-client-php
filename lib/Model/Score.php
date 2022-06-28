@@ -1,9 +1,9 @@
 <?php
 
-namespace FintechScore\MX\Client\Model;
+namespace FintechScore\Client\Model;
 
 use \ArrayAccess;
-use \FintechScore\MX\Client\ObjectSerializer;
+use \FintechScore\Client\ObjectSerializer;
 
 class Score implements ModelInterface, ArrayAccess
 {
@@ -13,7 +13,7 @@ class Score implements ModelInterface, ArrayAccess
     
     protected static $FintechScoreTypes = [
         'valor' => 'int',
-        'razon' => '\FintechScore\MX\Client\Model\CatalogoRazones'
+        'razon' => '\FintechScore\Client\Model\CatalogoRazones'
     ];
     
     protected static $FintechScoreFormats = [

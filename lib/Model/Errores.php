@@ -1,9 +1,9 @@
 <?php
 
-namespace FintechScore\MX\Client\Model;
+namespace FintechScore\Client\Model;
 
 use \ArrayAccess;
-use \FintechScore\MX\Client\ObjectSerializer;
+use \FintechScore\Client\ObjectSerializer;
 
 class Errores implements ModelInterface, ArrayAccess
 {
@@ -12,7 +12,7 @@ class Errores implements ModelInterface, ArrayAccess
     protected static $FintechScoreModelName = 'Errores';
     
     protected static $FintechScoreTypes = [
-        'errores' => '\FintechScore\MX\Client\Model\Error[]'
+        'errores' => '\FintechScore\Client\Model\Error[]'
     ];
     
     protected static $FintechScoreFormats = [
